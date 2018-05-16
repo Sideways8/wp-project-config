@@ -45,22 +45,36 @@ class Install
         // Project configuration directory.
         $config_directory = $this->root_path . '/config/';
         $www_directory    = $this->root_path . '/www/';
+
         // Paths to subs.
         $config_dev_stub        = __DIR__ . '/../../stubs/wp-config-dev.php.stub';
         $config_local_stub      = __DIR__ . '/../../stubs/wp-config-local.php.stub';
         $config_production_stub = __DIR__ . '/../../stubs/wp-config-production.php.stub';
+
         // Copy stubs.
-        $target = $config_directory . 'wp-config-dev.php';
-        if ( ! file_exists( $target ) ) {
-            copy( $config_dev_stub, $target );
+        $targets = [
+            $config_dev_stub => $config_directory . 'wp-config-dev.php',
+            $config_production_stub => $config_directory . 'wp-config-production.php',
+            $config_local_stub => $www_directory . 'wp-config-local.php'
+        ];
+
+        foreach( $targets as $key => $target ) {
+            if ( ! file_exists( $target ) ) {
+                copy( $key, $target );
+            }
         }
-        $target = $config_directory . 'wp-config-production.php';
-        if ( ! file_exists( $target ) ) {
-            copy( $config_production_stub, $target );
-        }
-        $target = $www_directory . 'wp-config-local.php';
-        if ( ! file_exists( $target ) ) {
-            copy( $config_local_stub, $target );
+
+        // Create content directories.
+        $targets = [
+            $www_directory . 'content',
+            $www_directory . 'content/plugins',
+            $www_directory . 'content/themes',
+        ];
+
+        foreach( $targets as $target ) {
+            if ( ! file_exists( $target ) ) {
+                mkdir( $target );
+            }
         }
     }
 
