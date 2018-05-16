@@ -1,5 +1,5 @@
 <?php
-namespace Sideways8\Setup\WP_Project_Config;
+namespace Sideways8\WP_Project_Config\Setup;
 
 class Install
 {
