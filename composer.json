@@ -1,0 +1,23 @@
+{
+    "name": "sideways8/wp-project-config",
+    "description": "A configuration package for sideways8/wp-project",
+    "type": "package",
+    "authors": [
+        {
+            "name": "Sideways8 Interactive, LLC",
+            "email": "support@sideways8.com",
+            "homepage": "https://sideways8.com",
+            "role": "Organization"
+        },
+        {
+            "name": "Marty Eason",
+            "email": "martye@sideways8.com",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Sideways8\\WP_Project_Config\\": "code/"
+        }
+    }
+}
